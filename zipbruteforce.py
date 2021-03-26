@@ -2,7 +2,7 @@ from zipfile import ZipFile
 import argparse
 import colorama
 from colorama import Fore, Style
-import time
+import time, os
 
 # Colored text
 colorama.init(autoreset=True)
@@ -57,7 +57,15 @@ with open(password_file, "r") as file:
             # Check if archive was extracted successfully
             if found == None:
                 print(Fore.GREEN + "[+] Password is: " + password.decode())
-                print(Fore.GREEN + "[+] Tested " + str(counter) + " passwords.")
+                print(Fore.GREEN + f"[+] Tested {counter} passwords.")
+
+                # Get extracted contents
+                extracted = os.listdir(args.ziparchive.rstrip(".zip"))
+                print(Fore.GREEN + f"[+] Extracted {len(extracted)} item: ")
+
+                # Print each item that is extracted
+                for i in range(len(extracted)):
+                    print(Fore.GREEN + f"[{i + 1}] " + extracted[i])
 
         except RuntimeError:
 
@@ -67,4 +75,4 @@ with open(password_file, "r") as file:
     # If found is empty then it means that no password matched
     if found == "":
         print(Fore.RED + "[!] Password was not found in file, try different password file.")
-        print(Fore.RED + "[!] Tested " + str(counter) + " passwords.")
+        print(Fore.RED + f"[!] Tested {counter} passwords.")
