@@ -10,13 +10,13 @@ colorama.init(autoreset=True)
 # Instantiate parser
 parser = argparse.ArgumentParser(description="\nUsage: python3 zipbruteforce.py -z [archive.zip] -p [passwords.txt]")
 
-# Adding zip file arugment
+# Adding zip file argument
 parser.add_argument("-z", dest="ziparchive", help="Zip archive file")
 
 # Adding password file argument
 parser.add_argument("-p", dest="passwordfile", help="Password file")
 
-# Parsing arguements
+# Parsing arguments
 args = parser.parse_args()
 
 try:
